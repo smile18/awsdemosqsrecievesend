@@ -166,8 +166,7 @@ public class SqsSendMessageService {
                 eventJsonObject.put("payload", payLoadJsonObject);
             }
         } catch (Exception e) {
-            LOGGER.error("ProducerExcpetion Thrown while jsonizing the payload and Exception is::::{}",
-                    ExceptionUtils.printStackTrace(e, 0));
+            LOGGER.error("ProducerExcpetion Thrown while jsonizing the payload and Exception is::::");
         }
         // Getting this extra filed from getEventTimeString so have to remove
         if (eventJsonObject.has("eventTimeString")) {

@@ -1,10 +1,16 @@
 package org.rogs.controller;
 
+import io.swagger.annotations.ApiParam;
 import org.rogs.model.Event;
 import org.rogs.service.EventProcessor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
-import java.util.logging.Logger;
 
 @RestController("messageController")
 @RequestMapping("/v1/events")
@@ -21,7 +27,7 @@ public class MessagingController {
             @Validated @RequestBody Event event,
             @ApiParam(hidden = true)
             @RequestHeader Map<String, String> requestHeader) throws Exception {
-
+            LOGGER.info("Received Request to publish with EventType {}  ", event.getEventType() );
         return eventProcessor.processEvent(queueName, event, Boolean.TRUE, requestHeader);
     }
 
